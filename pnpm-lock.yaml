@@ -8,6 +8,9 @@ dependencies:
   vue:
     specifier: ^2.7.14
     version: 2.7.14
+  vue-frag:
+    specifier: ^1.4.3
+    version: 1.4.3(vue@2.7.14)
 
 devDependencies:
   '@types/node':
@@ -25,6 +28,9 @@ devDependencies:
   vite:
     specifier: ^4.4.1
     version: 4.4.1(@types/node@20.4.0)
+  vue-frag-plugin:
+    specifier: ^1.0.0
+    version: 1.0.0(vue-frag@1.4.3)
   vue-tsc:
     specifier: ^1.8.4
     version: 1.8.4(typescript@5.1.6)
@@ -578,6 +584,14 @@ packages:
     hasBin: true
     dev: true
 
+  /@rollup/pluginutils@4.2.1:
+    resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
+    engines: {node: '>= 8.0.0'}
+    dependencies:
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
+    dev: true
+
   /@rollup/pluginutils@5.0.2:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
@@ -1002,6 +1016,12 @@ packages:
       yallist: 4.0.0
     dev: true
 
+  /magic-string@0.25.9:
+    resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
+    dependencies:
+      sourcemap-codec: 1.4.8
+    dev: true
+
   /minimatch@9.0.3:
     resolution: {integrity: sha512-RHiac9mvaRw0x3AYRgDC1CxAP7HTcNrrECeA8YYJeWnpo+2Q5CegtZjaotWTWxDG3UeGA1coE05iH1mPjT/2mg==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -1065,6 +1085,11 @@ packages:
   /source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
+
+  /sourcemap-codec@1.4.8:
+    resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
+    deprecated: Please use @jridgewell/sourcemap-codec instead
+    dev: true
 
   /supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
@@ -1133,6 +1158,24 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /vue-frag-plugin@1.0.0(vue-frag@1.4.3):
+    resolution: {integrity: sha512-g2jl79su113cFCAWySBKAlhgphwLuxnlpN5fBnjQCFcup6ot2wrqzY9ai5oa388PWQC2xAhfi3C8eoPNG/Mu6w==}
+    peerDependencies:
+      vue-frag: '*'
+    dependencies:
+      '@rollup/pluginutils': 4.2.1
+      '@vue/compiler-dom': 3.3.4
+      magic-string: 0.25.9
+      vue-frag: 1.4.3(vue@2.7.14)
+    dev: true
+
+  /vue-frag@1.4.3(vue@2.7.14):
+    resolution: {integrity: sha512-pQZj03f/j9LRhzz9vKaXTCXUHVYHuAXicshFv76VFqwz4MG3bcb+sPZMAbd0wmw7THjkrTPuoM0EG9TbG8CgMQ==}
+    peerDependencies:
+      vue: ^2.6.0
+    dependencies:
+      vue: 2.7.14
 
   /vue-template-compiler@2.7.14:
     resolution: {integrity: sha512-zyA5Y3ArvVG0NacJDkkzJuPQDF8RFeRlzV2vLeSnhSpieO6LK2OVbdLPi5MPPs09Ii+gMO8nY4S3iKQxBxDmWQ==}
