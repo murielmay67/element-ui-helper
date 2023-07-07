@@ -6,20 +6,13 @@
       Recommended IDE setup:
       <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
       +
-      <a
-        href="https://marketplace.visualstudio.com/items?itemName=octref.vetur"
-        target="_blank"
-      >
-        Vetur
-      </a>
+      <a href="https://marketplace.visualstudio.com/items?itemName=octref.vetur" target="_blank"> Vetur </a>
     </p>
 
     <p>See <code>README.md</code> for more information.</p>
 
     <p>
-      <a href="https://vitejs.dev/guide/features.html" target="_blank">
-        Vite Docs
-      </a>
+      <a href="https://vitejs.dev/guide/features.html" target="_blank"> Vite Docs </a>
       |
       <a href="https://vuejs.org/" target="_blank">Vue 2 Docs</a>
     </p>
@@ -33,20 +26,20 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from '@vue/composition-api'
+import { ref, defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'HelloWorld',
   props: {
     msg: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   setup() {
     const count = ref(0)
     return { count }
-  }
+  },
 })
 </script>
 
