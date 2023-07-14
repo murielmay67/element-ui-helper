@@ -1,21 +1,27 @@
 <template>
   <div id='app'>
-    <div>app:</div>
-    <BaseProvider>
+    <BaseTable>
       <div>CONTENT</div>
-    </BaseProvider>
+    </BaseTable>
+
+    <!--布局-->
+    <div style='padding: 16px; border: 1px solid deepskyblue; display: flex;'>
+      <div>
+
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang='ts'>
 import { defineComponent } from 'vue'
-import BaseProvider from './@table/base-provider'
+import { BaseTable } from './@table/base-table'
 
 console.clear()
 export default defineComponent({
   name: 'App',
   components: {
-    BaseProvider
+    BaseTable
   }
 })
 </script>
