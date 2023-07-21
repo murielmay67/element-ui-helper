@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "firefox",
+      "request": "launch",
+      "reAttach": true,
+      "name": "Launch 5173",
+      "url": "http://127.0.0.1:5173",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "node-terminal",
+      "name": "运行脚本: dev",
+      "request": "launch",
+      "command": "pnpm run dev",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
