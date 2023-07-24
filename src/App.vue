@@ -5,7 +5,7 @@
     </BaseTable>
 
     <!--布局-->
-    <div style='padding: 16px; border: 1px solid deepskyblue; display: flex;'>
+    <div class="p16px" style='border: 1px solid deepskyblue; display: flex;'>
       <div>
 
       </div>
