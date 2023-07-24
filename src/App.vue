@@ -5,7 +5,7 @@
     </BaseTable>
 
     <!--布局-->
-    <div class="p16px" style='border: 1px solid deepskyblue; display: flex;'>
+    <div uno-border="1px solid blue-200" class="uno-p16 uno-flex">
       <div>
 
       </div>
