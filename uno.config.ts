@@ -1,5 +1,6 @@
-import { defineConfig, presetAttributify, presetUno, transformerVariantGroup } from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetUno, transformerVariantGroup } from 'unocss'
 import presetRemToPx from '@unocss/preset-rem-to-px'
+import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 
 export default defineConfig({
   rules: [['custom-rule', { color: 'red' }]],
@@ -14,6 +15,11 @@ export default defineConfig({
       baseFontSize: 4,
     }),
     presetAttributify(),
+    presetIcons({
+      collections: {
+        icon: FileSystemIconLoader('./src/assets/svg', (svg) => svg.replace(/#FFF/, 'currentColor')),
+      },
+    }),
   ],
   transformers: [transformerVariantGroup()],
 })
