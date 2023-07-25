@@ -1,4 +1,4 @@
-import { defineConfig, presetAttributify, presetUno } from 'unocss'
+import { defineConfig, presetAttributify, presetUno, transformerVariantGroup } from 'unocss'
 import presetRemToPx from '@unocss/preset-rem-to-px'
 
 export default defineConfig({
@@ -15,4 +15,5 @@ export default defineConfig({
     }),
     presetAttributify(),
   ],
+  transformers: [transformerVariantGroup()],
 })
