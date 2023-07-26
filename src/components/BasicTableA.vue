@@ -1,5 +1,7 @@
 <template>
-  <div class="basic-table">BasicTableA</div>
+  <div class="basic-table">
+    <TInput />
+  </div>
 </template>
 
 <script setup lang="ts"></script>
