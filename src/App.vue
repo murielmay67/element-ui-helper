@@ -7,21 +7,15 @@
     </BaseTable>
 
     <!--布局-->
-    <div uno-border="1px solid blue-200" class="uno-p16 uno-flex">
-      <div></div>
+    <div class="uno-p16 uno-flex" uno-border="1px solid blue-200">
+      <BasicTableA />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
 import { BaseTable } from './@table/base-table'
+import BasicTableA from './components/BasicTableA.vue'
 
 console.clear()
-export default defineComponent({
-  name: 'App',
-  components: {
-    BaseTable,
-  },
-})
 </script>
