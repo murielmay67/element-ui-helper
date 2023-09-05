@@ -2,7 +2,7 @@ import Vue from 'vue'
 import { Dialog as ElDialog } from 'element-ui'
 
 export const testFnCall = () => {
-  console.log('testFnCall')
+  console.log('testFnCall1')
 
   const DialogAppConstructor = Vue.extend({
     name: `FunctionDialogInstance`,
