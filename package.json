@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit --skipLibCheck -p tsconfig.app.json && vite build",
-    "preview": "pnpm run build && vite preview"
+    "build": "npm run type-check && vite build",
+    "preview": "pnpm run build && vite preview",
+    "type-check": "vue-tsc --noEmit --skipLibCheck -p tsconfig.app.json"
   },
   "devDependencies": {
     "@types/node": "^20.4.5",
