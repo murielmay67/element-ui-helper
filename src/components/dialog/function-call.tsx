@@ -15,4 +15,5 @@ export const testFnCall = () => {
   const dialogApp = new DialogAppConstructor()
   dialogApp.$mount()
   document.body.appendChild(dialogApp.$el)
+  return dialogApp
 }
