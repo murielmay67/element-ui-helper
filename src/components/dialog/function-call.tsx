@@ -1,13 +1,15 @@
 import Vue from 'vue'
+import { Dialog as ElDialog } from 'element-ui'
 
 export const testFnCall = () => {
   console.log('testFnCall')
 
   const DialogAppConstructor = Vue.extend({
     name: `FunctionDialogInstance`,
-    data: () => ({ show: true }),
+    data: () => ({ isVisible: true }),
     render() {
-      return <div class="#############################">{new Date().toLocaleString()}</div>
+      const self = this
+      return <ElDialog props={{ visible: self.isVisible }}>{/*  */}</ElDialog>
     },
   })
   const dialogApp = new DialogAppConstructor()
