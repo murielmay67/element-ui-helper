@@ -13,6 +13,13 @@ export default defineConfig({
   build: {
     sourcemap: true,
     minify: false,
+    lib: {
+      name: 'element-ui-helper',
+      entry: path.resolve(__dirname, 'src/components/index.ts'),
+    },
+    rollupOptions: {
+      external: ['vue', 'element-ui'],
+    },
   },
   resolve: {
     alias: [
