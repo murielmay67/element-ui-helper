@@ -1,6 +1,6 @@
 {
   "name": "@murielmay67-1/element-ui-helper",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "packageManager": "pnpm@8.6.8",
   "description": "",
   "author": "",
@@ -15,11 +15,12 @@
     "url": "https://github.com/murielmay67/element-ui-helper"
   },
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
-  "typings": "./dist/index.d.ts",
+  "typings": "types/index.d.ts",
   "devDependencies": {
     "@types/node": "^20.5.9",
     "@vitejs/plugin-vue2": "^2.2.0",
