@@ -26,7 +26,8 @@ export default defineConfig({
           filePath,
           content: content
             .replaceAll('v3-component-public-instance.js', 'v3-component-public-instance')
-            .replaceAll('v3-component-options.js', 'v3-component-options'),
+            .replaceAll('v3-component-options.js', 'v3-component-options')
+            .replaceAll('vue.js', 'vue'),
         }
       },
     }),
