@@ -44,11 +44,11 @@ export default defineConfig({
     rollupOptions: {
       external: ['vue', 'element-ui', '@vue/babel-helper-vue-jsx-merge-props'],
       output: {
-        globals: {
+        /* globals: {
           vue: 'Vue',
           'element-ui': 'ELEMENT',
           '@vue/babel-helper-vue-jsx-merge-props': 'mergeProps',
-        },
+        }, */
       },
     },
   },
