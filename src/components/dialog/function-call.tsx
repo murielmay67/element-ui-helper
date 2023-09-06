@@ -1,6 +1,6 @@
 import { Dialog as ElDialog } from 'element-ui'
-import Vue, { h, type VNode, type VueConstructor } from 'vue'
-import type { FunctionDialogOptions } from './types'
+import Vue, { h } from 'vue'
+import type { ButtonOnClickCtx, FunctionDialogButton, FunctionDialogOptions } from './types'
 
 export class FunctionDialog {
   title
@@ -14,9 +14,10 @@ export class FunctionDialog {
   decorator
   decoratorProps
   onOpen
+  buttons?: FunctionDialogButton<ButtonOnClickCtx>[]
   private _dialogApp
 
-  constructor(options: FunctionDialogOptions) {
+  constructor(options: FunctionDialogOptions<ButtonOnClickCtx>) {
     this.title = options.title
     this.content = options.content
     this.contentProps = options.contentProps
@@ -28,6 +29,7 @@ export class FunctionDialog {
     this.closeOnClickModal = options.closeOnClickModal
     this.closeOnPressEscape = options.closeOnPressEscape
     this.onOpen = options.onOpen
+    this.buttons = options.buttons
     this._dialogApp = new this.#DialogAppConstructor({})
   }
 
@@ -140,13 +142,14 @@ export class FunctionDialog {
     this.onOpen?.()
   }
 
-  private _getButtonClickContext() {
-    // TODO: 类型。
-    return { dialog: this }
+  private get _buttonClickCtx(): ButtonOnClickCtx {
+    return {
+      dialog: this,
+    }
   }
 }
 
-export const createFunctionDialog = (options: FunctionDialogOptions) => {
+export const createFunctionDialog = (options: FunctionDialogOptions<ButtonOnClickCtx>) => {
   return new FunctionDialog(options)
 }
 
