@@ -66,11 +66,11 @@ export class FunctionDialog {
             props={{
               visible: self.isVisible,
               title: instance.title,
-              // width: instance.width,
-              // showClose: instance.showClose,
-              // closeOnClickModal: instance.closeOnClickModal,
-              // closeOnPressEscape: instance.closeOnPressEscape,
-              // customClass: instance.customClass
+              width: instance.width,
+              showClose: instance.showClose,
+              closeOnClickModal: instance.closeOnClickModal,
+              closeOnPressEscape: instance.closeOnPressEscape,
+              customClass: instance.customClass,
             }}
             on={{
               'update:visible': (visible: boolean) => {
