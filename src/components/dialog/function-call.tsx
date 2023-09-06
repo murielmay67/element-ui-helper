@@ -9,10 +9,10 @@ export class FunctionDialog {
   constructor(options: FunctionDialogOptions) {
     this.title = options.title
 
-    this.dialogApp = new this.#InstanceConstructor({})
+    this.dialogApp = new this.#DialogAppConstructor({})
   }
 
-  get #InstanceConstructor() {
+  get #DialogAppConstructor() {
     const instance = this
     return Vue.extend({
       name: `FunctionDialogApp`,
@@ -36,6 +36,25 @@ export class FunctionDialog {
               visible: self.isVisible,
               title: instance.title,
             }}
+            on={{
+              'update:visible': (visible: boolean) => {
+                self.isVisible = visible
+              },
+              open: () => {
+                // console.debug(`[FunctionDialog][ElDialog] onOpen`)
+                instance._handleOnOpen()
+              },
+              opened: () => {
+                // console.debug(`[FunctionDialog][ElDialog] onOpened`)
+              },
+              close: () => {
+                // console.debug(`[FunctionDialog][ElDialog] onClose`)
+              },
+              closed: () => {
+                // console.debug(`[FunctionDialog][ElDialog] onClosed`)
+                instance._handleClosed()
+              },
+            }}
           >
             {/*  */}
           </ElDialog>
@@ -52,6 +71,25 @@ export class FunctionDialog {
       document.body.appendChild(this.dialogApp.$el)
     }
     this.dialogApp.isVisible = true
+  }
+
+  close() {
+    this.dialogApp.isVisible = false
+  }
+
+  private _handleClosed() {
+    // console.debug(`[FunctionDialog] _handleClosed`)
+    this.dialogApp.$destroy()
+    this.dialogApp.$el.parentNode!.removeChild(this.dialogApp.$el)
+  }
+
+  private _handleOnOpen() {
+    // console.debug(`[FunctionDialog] _handleOnOpen`)
+  }
+
+  private _getButtonClickContext() {
+    // TODO: 类型。
+    return { dialog: this }
   }
 }
 
