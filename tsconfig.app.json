@@ -15,7 +15,8 @@
     // "moduleResolution": "Node",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "element-ui-helper": ["./src/components"]
     }
   }
 }

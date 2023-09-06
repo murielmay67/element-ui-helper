@@ -1,18 +1,17 @@
 <template>
   <div>
-    <Test />
-    <Button @click="clickBtn">testFnCall</Button>
+    <h1>element-ui-helper</h1>
   </div>
 </template>
 
 <script setup lang="ts">
-import Test from './test.vue'
-import { Button } from 'element-ui'
-import { testFnCall } from './components/dialog/function-call'
+import { onMounted } from 'vue'
+import { testFnCall } from 'element-ui-helper'
 
-const clickBtn = () => {
-  testFnCall()
-}
+onMounted(() => {
+  // @ts-ignore
+  window.dialog = testFnCall()
+})
 </script>
 
 <style scoped></style>

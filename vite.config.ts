@@ -58,6 +58,10 @@ export default defineConfig({
         find: /^@\/(.+)/,
         replacement: path.resolve(path.resolve(__dirname), 'src') + '/$1',
       },
+      {
+        find: 'element-ui-helper',
+        replacement: path.resolve(path.resolve(__dirname), 'src') + '/components',
+      },
     ],
   },
 })
