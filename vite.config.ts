@@ -30,11 +30,12 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/components/index.ts'),
     },
     rollupOptions: {
-      external: ['vue', 'element-ui'],
+      external: ['vue', 'element-ui', '@vue/babel-helper-vue-jsx-merge-props'],
       output: {
         globals: {
           vue: 'Vue',
           'element-ui': 'ELEMENT',
+          '@vue/babel-helper-vue-jsx-merge-props': 'mergeProps',
         },
       },
     },
