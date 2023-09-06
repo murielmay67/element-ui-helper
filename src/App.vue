@@ -30,8 +30,14 @@ onMounted(() => {
         )
       },
     }),
+    buttons: [
+      {
+        text: 'AAA',
+        type: 'primary',
+      },
+    ],
   })
-  dialog_1.open()
+  // dialog_1.open()
   // @ts-ignore
   window.dialog_1 = dialog_1
 })
