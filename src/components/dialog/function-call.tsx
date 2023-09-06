@@ -58,7 +58,7 @@ export const testFnCall = () => {
   console.log('testFnCall1')
 
   const DialogAppConstructor = Vue.extend({
-    name: `FunctionDialogInstance`,
+    name: `FunctionDialogApp`,
     data: () => ({ isVisible: true }),
     render() {
       const self = this
