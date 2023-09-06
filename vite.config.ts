@@ -18,7 +18,7 @@ export default defineConfig({
       tsconfigPath: path.resolve(__dirname, 'tsconfig.app.json'),
       // root: path.resolve(__dirname),
       // entryRoot: path.resolve(__dirname, 'src/components'),
-      // staticImport: true,
+      staticImport: true,
       logLevel: 'info',
     }),
   ],
