@@ -6,7 +6,7 @@
 
 <script setup lang="tsx">
 import { createFunctionDialog } from 'element-ui-helper'
-import { onMounted } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 import TestC from './test.vue'
 onMounted(() => {
   // @ts-ignore
@@ -17,6 +17,11 @@ onMounted(() => {
     content: TestC,
     // content: 'String',
     // content: () => <div>FN</div>,
+    decorator: defineComponent({
+      setup(props, { slots }) {
+        return () => <div class="decorator">{slots.default?.()}</div>
+      },
+    }),
   })
   dialog_1.open()
   // @ts-ignore

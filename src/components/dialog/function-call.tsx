@@ -1,5 +1,5 @@
 import { Dialog as ElDialog } from 'element-ui'
-import Vue, { h, type VNode } from 'vue'
+import Vue, { h, type VNode, type VueConstructor } from 'vue'
 import type { FunctionDialogOptions } from './types'
 
 export class FunctionDialog {
@@ -57,11 +57,15 @@ export class FunctionDialog {
           } else if (typeof content === 'function') {
             return (content as Function)()
           } else {
-            return h(content, { props: { dialog: instance } })
+            return h(content, {
+              props: {
+                dialog: instance,
+              },
+            })
           }
         }
 
-        const instanceContent = (
+        let appContent = (
           <ElDialog
             props={{
               visible: self.isVisible,
@@ -98,7 +102,17 @@ export class FunctionDialog {
           </ElDialog>
         )
 
-        return instanceContent
+        if (instance.decorator) {
+          appContent = h(
+            instance.decorator,
+            {
+              props: instance.decoratorProps,
+            },
+            [appContent]
+          )
+        }
+
+        return appContent
       },
     })
   }
