@@ -14,6 +14,8 @@ onMounted(() => {
 
   const dialog_1 = new FunctionDialog({})
   dialog_1.open()
+  // @ts-ignore
+  window.dialog_1 = dialog_1
 })
 </script>
 

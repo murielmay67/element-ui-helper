@@ -1,20 +1,22 @@
-import Vue from 'vue'
 import { Dialog as ElDialog } from 'element-ui'
-import type { FunctionDialogAppInstance, FunctionDialogOptions } from './types'
+import Vue from 'vue'
+import type { FunctionDialogOptions } from './types'
 
 export class FunctionDialog {
   title
-  dialogApp!: FunctionDialogAppInstance
+  dialogApp
 
   constructor(options: FunctionDialogOptions) {
     this.title = options.title
+
+    this.dialogApp = new this.#InstanceConstructor({})
   }
 
   get #InstanceConstructor() {
     const instance = this
     return Vue.extend({
-      name: `FunctionDialogInstance`,
-      data: () => ({ isVisible: true }),
+      name: `FunctionDialogApp`,
+      data: () => ({ isVisible: false }),
       created() {
         // console.debug(`[FunctionDialog] App created`)
       },
@@ -45,8 +47,7 @@ export class FunctionDialog {
   }
 
   open() {
-    if (!this.dialogApp) {
-      this.dialogApp = new this.#InstanceConstructor({})
+    if (!this.dialogApp.$el) {
       this.dialogApp.$mount()
       document.body.appendChild(this.dialogApp.$el)
     }
