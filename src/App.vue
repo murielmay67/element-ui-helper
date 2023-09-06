@@ -34,6 +34,9 @@ onMounted(() => {
       {
         text: 'AAA',
         type: 'primary',
+        onClick(ctx) {
+          console.debug(`[onClick] ctx :>> `, ctx)
+        },
       },
     ],
   })
