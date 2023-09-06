@@ -2,7 +2,7 @@ import { Dialog as ElDialog } from 'element-ui'
 import Vue, { h } from 'vue'
 import type { ButtonOnClickCtx, FunctionDialogButton, FunctionDialogOptions } from './types'
 
-export class FunctionDialog {
+export class FunctionDialog<ButtonOnClickCtxType = any> {
   title
   width
   customClass
@@ -14,10 +14,10 @@ export class FunctionDialog {
   decorator
   decoratorProps
   onOpen
-  buttons?: FunctionDialogButton<ButtonOnClickCtx>[]
+  buttons?: FunctionDialogButton<ButtonOnClickCtxType>[]
   private _dialogApp
 
-  constructor(options: FunctionDialogOptions<ButtonOnClickCtx>) {
+  constructor(options: FunctionDialogOptions<ButtonOnClickCtxType>) {
     this.title = options.title
     this.content = options.content
     this.contentProps = options.contentProps
@@ -131,18 +131,18 @@ export class FunctionDialog {
     this._dialogApp.isVisible = false
   }
 
-  private _handleClosed() {
+  _handleClosed() {
     // console.debug(`[FunctionDialog] _handleClosed`)
     this._dialogApp.$destroy()
     this._dialogApp.$el.parentNode!.removeChild(this._dialogApp.$el)
   }
 
-  private _handleOnOpen() {
+  _handleOnOpen() {
     // console.debug(`[FunctionDialog] _handleOnOpen`)
     this.onOpen?.()
   }
 
-  private get _buttonClickCtx(): ButtonOnClickCtx {
+  get _buttonClickCtx() {
     return {
       dialog: this,
     }

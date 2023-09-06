@@ -8,6 +8,7 @@
 import { createFunctionDialog } from 'element-ui-helper'
 import { defineComponent, onMounted } from 'vue'
 import TestC from './test.vue'
+import { FormDialog } from './e-fn-d'
 onMounted(() => {
   // @ts-ignore
   // window.dialog = testFnCall()
@@ -43,6 +44,9 @@ onMounted(() => {
   // dialog_1.open()
   // @ts-ignore
   window.dialog_1 = dialog_1
+
+  const dialog_2 = new FormDialog({})
+  dialog_2.open()
 })
 </script>
 

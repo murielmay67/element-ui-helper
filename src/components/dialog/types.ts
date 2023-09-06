@@ -19,8 +19,8 @@ export interface FunctionDialogOptions<ButtonOnClickCtx> {
   width?: ElDialog['width']
   customClass?: ElDialog['customClass']
   showClose?: ElDialog['showClose']
-  closeOnClickModal: ElDialog['closeOnClickModal']
-  closeOnPressEscape: ElDialog['closeOnPressEscape']
+  closeOnClickModal?: ElDialog['closeOnClickModal']
+  closeOnPressEscape?: ElDialog['closeOnPressEscape']
   content?: Component | string | (() => Vue.VNode)
   contentProps?: Record<string, any>
   decorator?: Component
