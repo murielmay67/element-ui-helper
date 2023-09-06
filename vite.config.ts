@@ -20,6 +20,15 @@ export default defineConfig({
       // entryRoot: path.resolve(__dirname, 'src/components'),
       staticImport: true,
       logLevel: 'info',
+      //
+      beforeWriteFile(filePath, content) {
+        return {
+          filePath,
+          content: content
+            .replaceAll('v3-component-public-instance.js', 'v3-component-public-instance')
+            .replaceAll('v3-component-options.js', 'v3-component-options'),
+        }
+      },
     }),
   ],
   build: {
