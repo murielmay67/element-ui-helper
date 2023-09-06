@@ -4,13 +4,31 @@ import type { FunctionDialogOptions } from './types'
 
 export class FunctionDialog {
   title
+  width
+  customClass
+  showClose
+  closeOnClickModal
+  closeOnPressEscape
   content
-  dialogApp
+  contentProps
+  decorator
+  decoratorProps
+  onOpen
+  private _dialogApp
 
   constructor(options: FunctionDialogOptions) {
     this.title = options.title
     this.content = options.content
-    this.dialogApp = new this.#DialogAppConstructor({})
+    this.contentProps = options.contentProps
+    this.decorator = options.decorator
+    this.decoratorProps = options.decoratorProps
+    this.width = options.width
+    this.customClass = options.customClass
+    this.showClose = options.showClose
+    this.closeOnClickModal = options.closeOnClickModal
+    this.closeOnPressEscape = options.closeOnPressEscape
+    this.onOpen = options.onOpen
+    this._dialogApp = new this.#DialogAppConstructor({})
   }
 
   get #DialogAppConstructor() {
@@ -86,21 +104,21 @@ export class FunctionDialog {
   }
 
   open() {
-    if (!this.dialogApp.$el) {
-      this.dialogApp.$mount()
-      document.body.appendChild(this.dialogApp.$el)
+    if (!this._dialogApp.$el) {
+      this._dialogApp.$mount()
+      document.body.appendChild(this._dialogApp.$el)
     }
-    this.dialogApp.isVisible = true
+    this._dialogApp.isVisible = true
   }
 
   close() {
-    this.dialogApp.isVisible = false
+    this._dialogApp.isVisible = false
   }
 
   private _handleClosed() {
     // console.debug(`[FunctionDialog] _handleClosed`)
-    this.dialogApp.$destroy()
-    this.dialogApp.$el.parentNode!.removeChild(this.dialogApp.$el)
+    this._dialogApp.$destroy()
+    this._dialogApp.$el.parentNode!.removeChild(this._dialogApp.$el)
   }
 
   private _handleOnOpen() {
@@ -111,6 +129,10 @@ export class FunctionDialog {
     // TODO: 类型。
     return { dialog: this }
   }
+}
+
+export const createFunctionDialog = (options: FunctionDialogOptions) => {
+  return new FunctionDialog(options)
 }
 
 export const testFnCall = () => {

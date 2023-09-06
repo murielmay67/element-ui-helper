@@ -5,14 +5,14 @@
 </template>
 
 <script setup lang="tsx">
+import { createFunctionDialog } from 'element-ui-helper'
 import { onMounted } from 'vue'
-import { FunctionDialog, testFnCall } from 'element-ui-helper'
 import TestC from './test.vue'
 onMounted(() => {
   // @ts-ignore
   // window.dialog = testFnCall()
 
-  const dialog_1 = new FunctionDialog({
+  const dialog_1 = createFunctionDialog({
     title: '测试',
     content: TestC,
     // content: 'String',
