@@ -16,6 +16,13 @@ export class FormDialog extends FunctionDialog<ButtonOnClickCtxForm> {
   _handleOnOpen(): void {
     console.log('[FormDialog] open')
   }
+
+  protected get _buttonClickCtx(): ButtonOnClickCtxForm {
+    return {
+      ...super._buttonClickCtx,
+      xx: 'xx',
+    }
+  }
 }
 
 new FormDialog({

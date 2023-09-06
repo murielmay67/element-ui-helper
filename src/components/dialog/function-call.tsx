@@ -142,7 +142,7 @@ export class FunctionDialog<ButtonOnClickCtxType = any> {
     this.onOpen?.()
   }
 
-  get _buttonClickCtx() {
+  protected get _buttonClickCtx(): ButtonOnClickCtx {
     return {
       dialog: this,
     }

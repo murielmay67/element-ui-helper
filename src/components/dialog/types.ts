@@ -3,8 +3,9 @@ import type { ElButton } from 'element-ui/types/button'
 import type { Component } from 'vue'
 import type { FunctionDialog } from './function-call'
 
-export type ButtonOnClickCtx = {
+export interface ButtonOnClickCtx {
   dialog: FunctionDialog
+  // k1: string
 }
 
 export type FunctionDialogButton<ButtonOnClickCtx> = Partial<Omit<ElButton, 'loading' | 'text'>> & {
