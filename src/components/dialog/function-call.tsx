@@ -137,6 +137,7 @@ export class FunctionDialog {
 
   private _handleOnOpen() {
     // console.debug(`[FunctionDialog] _handleOnOpen`)
+    this.onOpen?.()
   }
 
   private _getButtonClickContext() {

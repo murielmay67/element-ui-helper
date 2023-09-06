@@ -17,9 +17,17 @@ onMounted(() => {
     content: TestC,
     // content: 'String',
     // content: () => <div>FN</div>,
+    decoratorProps: {
+      title: 'prop-title',
+    },
     decorator: defineComponent({
+      props: ['title'],
       setup(props, { slots }) {
-        return () => <div class="decorator">{slots.default?.()}</div>
+        return () => (
+          <div class="decorator" title={props.title}>
+            {slots.default?.()}
+          </div>
+        )
       },
     }),
   })
