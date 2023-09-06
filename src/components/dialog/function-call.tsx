@@ -1,14 +1,15 @@
 import { Dialog as ElDialog } from 'element-ui'
-import Vue from 'vue'
+import Vue, { h, type VNode } from 'vue'
 import type { FunctionDialogOptions } from './types'
 
 export class FunctionDialog {
   title
+  content
   dialogApp
 
   constructor(options: FunctionDialogOptions) {
     this.title = options.title
-
+    this.content = options.content
     this.dialogApp = new this.#DialogAppConstructor({})
   }
 
@@ -30,11 +31,28 @@ export class FunctionDialog {
         // console.debug(`[FunctionDialog] renderApp this.isVisible :>> `, this.isVisible)
         const self = this
 
+        const resolveComponent = () => {
+          const content = instance.content
+
+          if (typeof content === 'string') {
+            return content
+          } else if (typeof content === 'function') {
+            return (content as Function)()
+          } else {
+            return h(content, { props: { dialog: instance } })
+          }
+        }
+
         const instanceContent = (
           <ElDialog
             props={{
               visible: self.isVisible,
               title: instance.title,
+              // width: instance.width,
+              // showClose: instance.showClose,
+              // closeOnClickModal: instance.closeOnClickModal,
+              // closeOnPressEscape: instance.closeOnPressEscape,
+              // customClass: instance.customClass
             }}
             on={{
               'update:visible': (visible: boolean) => {
@@ -56,7 +74,9 @@ export class FunctionDialog {
               },
             }}
           >
-            {/*  */}
+            <template slot="default">{resolveComponent()}</template>
+
+            {/* <template slot="footer">{buttonsContent}</template> */}
           </ElDialog>
         )
 
