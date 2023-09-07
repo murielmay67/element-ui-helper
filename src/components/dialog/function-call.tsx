@@ -1,8 +1,8 @@
 import { Dialog as ElDialog, Button as ElButton } from 'element-ui'
 import Vue, { h } from 'vue'
-import type { IButtonOnClickCtx, FunctionDialogButton, FunctionDialogOptions } from './types'
+import type { IDialogCtx, FunctionDialogButton, FunctionDialogOptions } from './types'
 
-export class FunctionDialog<ButtonOnClickCtxType = any> {
+export class FunctionDialog<DialogCtxType = any> {
   title
   width
   customClass
@@ -14,10 +14,10 @@ export class FunctionDialog<ButtonOnClickCtxType = any> {
   decorator
   decoratorProps
   onOpen
-  buttons: FunctionDialogButton<ButtonOnClickCtxType>[]
+  buttons: FunctionDialogButton<DialogCtxType>[]
   private _dialogApp
 
-  constructor(options: FunctionDialogOptions<ButtonOnClickCtxType>) {
+  constructor(options: FunctionDialogOptions<DialogCtxType>) {
     this.title = options.title
     this.content = options.content
     this.contentProps = options.contentProps
@@ -81,7 +81,7 @@ export class FunctionDialog<ButtonOnClickCtxType = any> {
               loading: appInstance.buttonLoading[index],
             }}
             onClick={async () => {
-              let result = button.onClick?.(instance._buttonOnClickCtx)
+              let result = button.onClick?.(instance._dialogCtx)
               if (result instanceof Promise) {
                 appInstance.buttonLoading[index] = true
                 try {
@@ -174,13 +174,13 @@ export class FunctionDialog<ButtonOnClickCtxType = any> {
     this.onOpen?.()
   }
 
-  protected get _buttonOnClickCtx() {
+  protected get _dialogCtx() {
     return {
       dialog: this,
-    } as ButtonOnClickCtxType
+    } as DialogCtxType
   }
 }
 
-export const createFunctionDialog = (options: FunctionDialogOptions<IButtonOnClickCtx>) => {
+export const createFunctionDialog = (options: FunctionDialogOptions<IDialogCtx>) => {
   return new FunctionDialog(options)
 }

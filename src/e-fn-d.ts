@@ -1,11 +1,12 @@
 import { FunctionDialog } from './components'
-import type { IButtonOnClickCtx, FunctionDialogOptions } from './components/dialog/types'
+import type { IDialogCtx, FunctionDialogOptions } from './components/dialog/types'
 
 // FunctionDialogOptions
 interface FormDialogOptions extends FunctionDialogOptions<ButtonOnClickCtxForm> {}
 
-interface ButtonOnClickCtxForm extends IButtonOnClickCtx {
+interface ButtonOnClickCtxForm extends IDialogCtx {
   xx: string
+  // dialog: FormDialog
 }
 
 export class FormDialog extends FunctionDialog<ButtonOnClickCtxForm> {
@@ -17,9 +18,9 @@ export class FormDialog extends FunctionDialog<ButtonOnClickCtxForm> {
     console.log('[FormDialog] open')
   }
 
-  protected get _buttonOnClickCtx(): ButtonOnClickCtxForm {
+  protected get _dialogCtx(): ButtonOnClickCtxForm {
     return {
-      ...super._buttonOnClickCtx,
+      ...super._dialogCtx,
       xx: 'xx',
     }
   }
@@ -31,6 +32,7 @@ export const formDialog = new FormDialog({
       text: '确定',
       onClick(ctx) {
         console.debug(`[FormDialog] ctx :>> `, ctx)
+        ctx.dialog
       },
     },
   ],

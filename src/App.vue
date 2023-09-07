@@ -52,11 +52,11 @@ onMounted(() => {
       },
     ],
   })
-  // dialog_1.open()
+  dialog_1.open()
   // @ts-ignore
   window.dialog_1 = dialog_1
 
-  formDialog.open()
+  // formDialog.open()
 })
 </script>
 
