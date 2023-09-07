@@ -1,6 +1,6 @@
-import { Dialog as ElDialog } from 'element-ui'
+import { Dialog as ElDialog, Button as ElButton } from 'element-ui'
 import Vue, { h } from 'vue'
-import type { ButtonOnClickCtx, FunctionDialogButton, FunctionDialogOptions } from './types'
+import type { IButtonOnClickCtx, FunctionDialogButton, FunctionDialogOptions } from './types'
 
 export class FunctionDialog<ButtonOnClickCtxType = any> {
   title
@@ -14,7 +14,7 @@ export class FunctionDialog<ButtonOnClickCtxType = any> {
   decorator
   decoratorProps
   onOpen
-  buttons?: FunctionDialogButton<ButtonOnClickCtxType>[]
+  buttons: FunctionDialogButton<ButtonOnClickCtxType>[]
   private _dialogApp
 
   constructor(options: FunctionDialogOptions<ButtonOnClickCtxType>) {
@@ -29,15 +29,19 @@ export class FunctionDialog<ButtonOnClickCtxType = any> {
     this.closeOnClickModal = options.closeOnClickModal
     this.closeOnPressEscape = options.closeOnPressEscape
     this.onOpen = options.onOpen
-    this.buttons = options.buttons
+    this.buttons = options.buttons || []
     this._dialogApp = new this.#DialogAppConstructor({})
   }
 
   get #DialogAppConstructor() {
     const instance = this
+
     return Vue.extend({
       name: `FunctionDialogApp`,
-      data: () => ({ isVisible: false }),
+      data: () => ({
+        isVisible: false,
+        buttonLoading: { ...instance.buttons.map(() => false) },
+      }),
       created() {
         // console.debug(`[FunctionDialog] App created`)
       },
@@ -49,8 +53,9 @@ export class FunctionDialog<ButtonOnClickCtxType = any> {
       },
       render() {
         // console.debug(`[FunctionDialog] renderApp this.isVisible :>> `, this.isVisible)
-        const self = this
+        const appInstance = this
 
+        // 弹窗内容。
         const resolveComponent = () => {
           const content = instance.content
 
@@ -67,10 +72,37 @@ export class FunctionDialog<ButtonOnClickCtxType = any> {
           }
         }
 
+        // 弹窗按钮。
+        const buttonsContent = instance.buttons.map((button, index) => (
+          <ElButton
+            props={{
+              ...button,
+              disabled: Object.values(appInstance.buttonLoading).some(Boolean),
+              loading: appInstance.buttonLoading[index],
+            }}
+            onClick={async () => {
+              let result = button.onClick?.(instance._buttonOnClickCtx)
+              if (result instanceof Promise) {
+                appInstance.buttonLoading[index] = true
+                try {
+                  result = await result
+                } finally {
+                  appInstance.buttonLoading[index] = false
+                }
+              }
+              if (result !== false) {
+                appInstance.isVisible = false
+              }
+            }}
+          >
+            {button.text}
+          </ElButton>
+        ))
+
         let appContent = (
           <ElDialog
             props={{
-              visible: self.isVisible,
+              visible: appInstance.isVisible,
               title: instance.title,
               width: instance.width,
               showClose: instance.showClose,
@@ -80,7 +112,7 @@ export class FunctionDialog<ButtonOnClickCtxType = any> {
             }}
             on={{
               'update:visible': (visible: boolean) => {
-                self.isVisible = visible
+                appInstance.isVisible = visible
               },
               open: () => {
                 // console.debug(`[FunctionDialog][ElDialog] onOpen`)
@@ -100,7 +132,7 @@ export class FunctionDialog<ButtonOnClickCtxType = any> {
           >
             <template slot="default">{resolveComponent()}</template>
 
-            {/* <template slot="footer">{buttonsContent}</template> */}
+            <template slot="footer">{buttonsContent}</template>
           </ElDialog>
         )
 
@@ -142,30 +174,13 @@ export class FunctionDialog<ButtonOnClickCtxType = any> {
     this.onOpen?.()
   }
 
-  protected get _buttonClickCtx(): ButtonOnClickCtx {
+  protected get _buttonOnClickCtx() {
     return {
       dialog: this,
-    }
+    } as ButtonOnClickCtxType
   }
 }
 
-export const createFunctionDialog = (options: FunctionDialogOptions<ButtonOnClickCtx>) => {
+export const createFunctionDialog = (options: FunctionDialogOptions<IButtonOnClickCtx>) => {
   return new FunctionDialog(options)
-}
-
-export const testFnCall = () => {
-  console.log('testFnCall1')
-
-  const DialogAppConstructor = Vue.extend({
-    name: `FunctionDialogApp`,
-    data: () => ({ isVisible: true }),
-    render() {
-      const self = this
-      return <ElDialog props={{ visible: self.isVisible }}>{/*  */}</ElDialog>
-    },
-  })
-  const dialogApp = new DialogAppConstructor()
-  dialogApp.$mount()
-  document.body.appendChild(dialogApp.$el)
-  return dialogApp
 }
