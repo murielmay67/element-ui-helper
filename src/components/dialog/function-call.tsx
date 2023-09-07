@@ -67,6 +67,7 @@ export class FunctionDialog<DialogCtxType = any> {
             return h(content, {
               props: {
                 dialog: instance,
+                ...instance.contentProps,
               },
             })
           }
@@ -140,7 +141,10 @@ export class FunctionDialog<DialogCtxType = any> {
           appContent = h(
             instance.decorator,
             {
-              props: instance.decoratorProps,
+              props: {
+                dialog: instance,
+                ...instance.decoratorProps,
+              },
             },
             [appContent]
           )
