@@ -169,7 +169,7 @@ export class FunctionDialog<ButtonOnClickCtxType = any> {
     this._dialogApp.$el.parentNode!.removeChild(this._dialogApp.$el)
   }
 
-  _handleOnOpen() {
+  protected _handleOnOpen() {
     // console.debug(`[FunctionDialog] _handleOnOpen`)
     this.onOpen?.()
   }
