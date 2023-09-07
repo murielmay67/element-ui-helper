@@ -2,6 +2,7 @@
 
 ```shell
 pnpm add element-ui-helper
+1
 ```
 
 ## Usage
